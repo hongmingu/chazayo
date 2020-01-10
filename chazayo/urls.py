@@ -14,11 +14,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from core.views import TestView
+from django.urls import path, re_path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', TestView.as_view(), name='test'),
+    re_path(r'^r/', include('core.urls')),
+
+
+    # -------------------------------------------------------------------------------------------------------------------------
+
+    # path 건 re_path 건 편한대로 쓰면 됨. 내가 path 보다 re path 를 쓰는 것은 예전 장고 버전에서 쓰던 버릇 때문.
+    # 여기서 core.urls 기본주소/r/core.url에 적용된 주소로 사용가능함.
+    # core 파일의 urls.py로 고
+
+    # -------------------------------------------------------------------------------------------------------------------------
 
 ]
