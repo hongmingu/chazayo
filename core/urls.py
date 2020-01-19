@@ -6,7 +6,8 @@ app_name = 'core'
 urlpatterns = [
 
     # ------------------------------------- REST -----------------------------------------
-    re_path(r'^test_json/$', views.test_json, name='test_json'),
+    #re_path(r'^test_json/$', views.test_json, name='test_json'),
+    path('', views.TestView.as_view(), name='testview'),
 
     # -------------------------------------------------------------------------------------------------------------------------
 

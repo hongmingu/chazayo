@@ -3,7 +3,8 @@ from .models import *
 # Create your views here.
 from django.views.decorators.csrf import csrf_exempt
 
-
+from rest_framework import generics
+from. serializer import *
 # -------------------------------------------------------------------------------------------------------------------------
 # 아래 주어진 것이 REST framework 없이 내가 만들어 쓰던 jsonresponse 기본 예시임. csrf 절차를 @csrf_exempt로 무시해주고 (권장될방법아님)
 # 그 요청이 POST 인지 확인하고 어딘가에서 여기에 요청할 때 request 값에 넣어준 'name'이라는 값을 확인해서 name 이란 변수에 넣은 후에 그 값을 조정하는 것임.
@@ -11,7 +12,11 @@ from django.views.decorators.csrf import csrf_exempt
 
 # -------------------------------------------------------------------------------------------------------------------------
 
+class TestView(generics.CreateAPIView):
+    serializer_class = InfobaseSerializer
+    queryset = InfoBase.objects.all()
 
+'''
 @csrf_exempt
 def test_json(request):
     if request.method == 'POST':
@@ -28,3 +33,4 @@ def test_json(request):
         # 이걸 테스트하기 위해선 사용하면 편한 예시(이미 알고 있을 수도 있다): advanced REST client (모른다면 사용법 확인하길 추천)
         # 이제 core 의 models.py 확인
         return JsonResponse(result, safe=False)
+'''
